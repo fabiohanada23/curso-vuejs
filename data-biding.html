@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Passagem de Dados</title>
+    </head>
+    <body>
+
+        <div id="data_binding">
+
+            <h1 >{{ message }}</h1>
+
+
+        </div>
+        
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+
+        <script>
+
+            let app = new Vue({
+                el: '#data_binding',
+                data: {
+                    message: 'Mensagem para ser exibida',
+                    
+                }
+            })
+
+        </script>
+
+    </body>
+</html>

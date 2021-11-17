@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Diretivas: v-bind</title>
+    </head>
+    <body>
+
+        <div id="directives">
+            
+            <h2>Acesse o site</h2>
+
+            <a v-bind:href="url">Hcode</a>
+
+
+            <p :[arg]="value">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure distinctio in voluptatibus cupiditate delectus possimus ab quae modi, debitis numquam, ex recusandae. Quisquam iure natus sapiente exercitationem velit consequuntur. Veniam?</p>
+
+        </div>
+        
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue2-directives/dist/vue2-filters.min.js"></script>
+
+        <script>
+
+            let app = new Vue({
+                el: '#directives',
+                data: {
+                    url:'https://hcode.com.br',
+                    arg: 'title',
+                    value: 'Paragrafo de exemplo',
+                }
+            })    
+
+        </script>
+
+    </body>
+</html>

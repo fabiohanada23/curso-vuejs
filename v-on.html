@@ -13,6 +13,14 @@
 
             <h4 v-on:[eventname]="reverseMessage">{{ message }}</h4>
 
+            <hr>
+
+            <input type="text" placeholder="Filtrar pessoas" v-on:keyup="filterPersons">
+
+            <ul>
+                <li v-for="person in personsFiltred">{{ person }}</li>
+            </ul>
+
         </div>
         
         <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
@@ -25,14 +33,25 @@
                 el: '#directives',
                 data: {
                   message: "Vue.js ",
-                  eventname: 'click'
+                  eventname: 'click',
+                  persons: ['Antonio', 'Rafael', 'Fabio', 'Glaucio', 'Joao', 'Pedro'],
+                  personsFiltred: []
                 },
                 methods:{
                     reverseMessage(){
 
                         this.message = this.message.split('').reverse().join('');
 
+                    },
+                    filterPersons(event){
+                        this.personsFiltred = this.persons.filter(name => {
+                            return name.toUpperCase().includes(event.target.value.toUpperCase());
+
+                        })
                     }
+                },
+                created(){
+                    this.personsFiltred = this.persons;
                 }
             })    
 

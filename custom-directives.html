@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Diretivas Personalizadas</title>
+       
+    </head>
+    <body>
+
+        <div id="directives">
+            
+            <h4 v-upper>{{ name }}</h4>
+
+            <h2 v-capitalize>hello world super mario</h2>
+
+        </div>
+        
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue2-directives/dist/vue2-filters.min.js"></script>
+
+        <script>
+
+                Vue.directive('upper', {
+                    inserted(el){
+
+                        el.innerText = el.innerText.toUpperCase();
+
+                    }
+                })
+
+                let app = new Vue({
+                el: '#directives',
+                data: {
+                    name: 'Hcode'
+                },
+                directives:{
+                    capitalize: function(element){
+                        let words = element.innerText.split(' ');
+
+                        words.forEach((text, index) => {
+                            words[index] = text.charAt(0).toUpperCase() + text.slice(1);
+                        });
+
+                        element.innerText = words.join(' ');
+                    }
+                }
+                
+            })
+
+
+                
+
+        </script>
+
+    </body>
+</html>

@@ -14,7 +14,7 @@
 
             <h2 v-capitalize>hello world {{ name }}</h2>
 
-            <h2 v-custom:parametro.mod1.mod2="'informação'">{{ name }}</h2>
+            <h2 v-custom="{ direction: argumento, distance }">{{ name }}</h2>
 
         </div>
         
@@ -32,10 +32,35 @@
                     }
                 })
 
+                function setDirection(element, biding){
+                    element.style.margin = 0;
+                    let direction = biding.value.direction.toLowerCase();
+                    let value = biding.value.distance;
+
+                    switch(direction){
+                        case 'left':
+                        case 'right':
+                        case 'bottom':
+                        case 'top':
+                            let newDirection = direction.charAt(0).toUpperCase() +
+                            direction.slice(1);
+                            
+                            eval(`element.style.margin${newDirection} = value + 'px'`);
+                        break;
+
+                        default:
+                            console.error('Informe uma opcao correta')
+                    }
+
+                   
+                }
+
                 let app = new Vue({
                 el: '#directives',
                 data: {
-                    name: 'Hcode'
+                    name: 'Hcode',
+                    argumento: 'left',
+                    distance: 150,
                 },
                 directives:{
                     // capitalize: {
@@ -70,14 +95,13 @@
                         
                     // },
                     custom: {
-                        inserted(element, biding, vnode){
-                            // console.log(vnode);
+                        bind(element, biding, vnode){
+                           setDirection(element, biding);
 
-                            element.style.color = 'red';
+                           
                         },
                         update(element, biding, vnode, oldvnode){
-                            console.log(vnode, oldvnode);
-                            element.style;TextDecoration = 'underline';
+                            setDirection(element, biding);
                         }
                     }
                 }
